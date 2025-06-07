@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico: Análise de Investimento no Brooklin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .stat-card {
+            background-color: #8735d2; /* Muvon secondary purple */
+            color: white;
+        }
+        .highlight-text {
+            color: #ee9b00; /* Muvon accent gold */
+        }
+        .section-title {
+            color: #f90f54; /* Muvon primary pink */
+        }
+        .brand-gradient {
+            background: linear-gradient(90deg, #f90f54, #8735d2); /* Muvon pink to purple gradient */
+        }
+        .source-list {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+            color: #333333;
+        }
+        .source-list li {
+            margin-bottom: 0.5rem;
+        }
+        .source-list a {
+            color: #8735d2;
+            text-decoration: none;
+        }
+        .source-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="brand-gradient text-white p-6 shadow-lg">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl md:text-5xl font-bold">Análise de Mercado Imobiliário</h1>
+            <p class="text-xl md:text-2xl mt-2">O Potencial Estratégico do Bairro Brooklin</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="introduction" class="text-center mb-12">
+            <h2 class="text-3xl font-bold section-title mb-4">O Epicentro do Investimento Imobiliário</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                O Brooklin não é apenas um bairro, é um ecossistema de alta performance. Com uma combinação única de infraestrutura robusta, qualidade de vida e um futuro promissor, a região se consolida como o principal destino para investimentos imobiliários de alto padrão em São Paulo, especialmente para quem busca a flexibilidade de um **studio ou apartamento de 1 dormitório novo ou em construção**.
+            </p>
+        </section>
+
+        <section id="market-overview" class="mb-12">
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="stat-card p-6 rounded-2xl shadow-xl flex flex-col justify-center items-center text-center">
+                    <h3 class="text-xl font-semibold mb-2">Liderança em Aluguel</h3>
+                    <p class="text-5xl font-bold highlight-text">R$ 99,65</p>
+                    <p class="text-lg mt-2">Valor médio do m² em Março</p>
+                    <p class="text-sm text-gray-300 mt-4">O Brooklin ultrapassou bairros historicamente caros, tornando-se o local com o aluguel mais valorizado da cidade, reflexo de uma demanda forte e contínua. <span class="opacity-75">[1]</span></p>
+                </div>
+                 <div class="stat-card p-6 rounded-2xl shadow-xl flex flex-col justify-center items-center text-center">
+                    <h3 class="text-xl font-semibold mb-2">Crescimento Acelerado</h3>
+                    <p class="text-5xl font-bold highlight-text">15,3%</p>
+                    <p class="text-lg mt-2">Aumento no valor do aluguel</p>
+                     <p class="text-sm text-gray-300 mt-4">Nos últimos 12 meses, a valorização expressiva demonstra a alta atratividade e a solidez do mercado local, superando a média da cidade. <span class="opacity-75">[1]</span></p>
+                </div>
+                <div class="stat-card p-6 rounded-2xl shadow-xl flex flex-col justify-center items-center text-center">
+                    <h3 class="text-xl font-semibold mb-2">Valor de Venda Sólido</h3>
+                    <p class="text-5xl font-bold highlight-text">R$ 13.200</p>
+                    <p class="text-lg mt-2">Valor médio do m² para venda</p>
+                     <p class="text-sm text-gray-300 mt-4">O valor de venda consistente para apartamentos evidencia a maturidade e a segurança do investimento em ativos imobiliários no bairro. <span class="opacity-75">[2]</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="market-data" class="mb-12">
+            <h2 class="text-3xl font-bold section-title text-center mb-8">O Mercado em Números: Valorização e Demanda</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-center">Comparativo de Preços de Aluguel (m²)</h3>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="rentalPriceChart"></canvas>
+                    </div>
+                    <p class="text-gray-600 mt-4 text-sm text-center">A liderança do Brooklin nos preços de aluguel é um indicador claro de sua desejabilidade e do poder de retorno para o investidor, superando outros bairros nobres, especialmente para imóveis de menor porte como studios e 1 dormitório. <span class="opacity-75">[1]</span></p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-center">Oferta de Imóveis Novos ou em Construção por Tipologia</h3>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="apartmentTypeChart"></canvas>
+                    </div>
+                    <p class="text-gray-600 mt-4 text-sm text-center">A grande oferta de studios e apartamentos de 1 dormitório em lançamentos e construções no Brooklin reflete a demanda por moradias modernas e eficientes, ideais para aluguel de curta e longa duração. <span class="opacity-75">[3, 4]</span></p>
+                </div>
+
+                <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-center">Valor Médio de Venda (m²) para Imóveis Novos/Em Construção por Tipologia</h3>
+                     <div class="chart-container h-96 md:h-[450px]">
+                        <canvas id="salePriceChart"></canvas>
+                    </div>
+                    <p class="text-gray-600 mt-4 text-sm text-center">Os valores de venda por metro quadrado para imóveis novos ou em construção mostram a solidez do investimento, com destaque para a rentabilidade dos studios e 1 dormitório, que atendem a um público dinâmico. <span class="opacity-75">[2, 3, 4]</span></p>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="future-projects" class="mb-12">
+            <h2 class="text-3xl font-bold section-title text-center mb-8">O Futuro é Agora: Projetos que Geram Valor</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600 text-center mb-10">
+                O crescimento do Brooklin é planejado e contínuo. Grandes projetos de infraestrutura e urbanismo estão em andamento, garantindo uma valorização sustentável e aprimorando ainda mais a qualidade de vida e a conectividade da região, com impactos diretos no setor imobiliário.
+            </p>
+
+            <div class="relative">
+                <div class="border-l-4 border-[#8735d2] absolute h-full top-0 left-1/2 -ml-0.5"></div>
+                
+                <div class="mb-10 flex justify-center items-center w-full">
+                    <div class="w-1/2 flex justify-end">
+                        <div class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-sm mr-4 text-right">
+                            <p class="text-sm font-bold text-[#8735d2]">2020</p>
+                            <h4 class="text-lg font-bold mt-1">Lei Chucri Zaidan/Berrini</h4>
+                            <p class="text-sm text-gray-600 mt-2">Sancionada a Lei 17.541, planejando melhorias como praças e alargamento de vias para aprimorar a circulação na região adjacente. <span class="opacity-75">[5]</span></p>
+                        </div>
+                    </div>
+                    <div class="absolute w-6 h-6 rounded-full bg-[#8735d2] shadow-md left-1/2 -ml-3"></div>
+                    <div class="w-1/2"></div>
+                </div>
+
+                <div class="mb-10 flex justify-center items-center w-full">
+                    <div class="w-1/2"></div>
+                    <div class="absolute w-6 h-6 rounded-full bg-[#8735d2] shadow-md left-1/2 -ml-3"></div>
+                     <div class="w-1/2 flex justify-start">
+                        <div class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-sm ml-4">
+                            <p class="text-sm font-bold text-[#8735d2]">EM ANDAMENTO</p>
+                            <h4 class="text-lg font-bold mt-1">Op. Urbana Água Espraiada (OUCAE)</h4>
+                            <p class="text-sm text-gray-600 mt-2">Projeto de reestruturação urbana que inclui novas vias, pontes e um parque linear, visando aumentar a densidade e atrair mais investimentos. <span class="opacity-75">[5]</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-10 flex justify-center items-center w-full">
+                    <div class="w-1/2 flex justify-end">
+                        <div class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-sm mr-4 text-right">
+                           <p class="text-sm font-bold text-[#8735d2]">RETA FINAL</p>
+                           <h4 class="text-lg font-bold mt-1">Linha 17-Ouro (Monotrilho)</h4>
+                           <p class="text-sm text-gray-600 mt-2">Conectará o Aeroporto de Congonhas à Linha 9-Esmeralda, melhorando drasticamente a mobilidade e impulsionando a valorização no entorno. <span class="opacity-75">[6, 7]</span></p>
+                        </div>
+                    </div>
+                    <div class="absolute w-6 h-6 rounded-full bg-[#8735d2] shadow-md left-1/2 -ml-3"></div>
+                    <div class="w-1/2"></div>
+                </div>
+
+                <div class="mb-10 flex justify-center items-center w-full">
+                     <div class="w-1/2"></div>
+                    <div class="absolute w-6 h-6 rounded-full bg-[#8735d2] shadow-md left-1/2 -ml-3"></div>
+                     <div class="w-1/2 flex justify-start">
+                        <div class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-sm ml-4">
+                             <p class="text-sm font-bold text-[#8735d2]">2024</p>
+                            <h4 class="text-lg font-bold mt-1">Novos Parâmetros OUCAE</h4>
+                            <p class="text-sm text-gray-600 mt-2">A Lei 18.174 adapta a Operação Urbana ao Plano Diretor, otimizando o zoneamento para atrair ainda mais investimentos estratégicos. <span class="opacity-75">[5]</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-10 flex justify-center items-center w-full">
+                    <div class="w-1/2 flex justify-end">
+                        <div class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-sm mr-4 text-right">
+                            <p class="text-sm font-bold text-[#8735d2]">INAUGURAÇÃO 2025</p>
+                            <h4 class="text-lg font-bold mt-1">Novo Hospital Sírio-Libanês</h4>
+                            <p class="text-sm text-gray-600 mt-2">Uma nova unidade no complexo "O Parque", na Av. Roque Petroni Júnior, com investimento de R$150 milhões, focada em "hospital dia" para procedimentos agendados. <span class="opacity-75">[8, 9, 10]</span></p>
+                        </div>
+                    </div>
+                    <div class="absolute w-6 h-6 rounded-full bg-[#8735d2] shadow-md left-1/2 -ml-3"></div>
+                    <div class="w-1/2"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="medical-tourism" class="bg-white rounded-2xl shadow-lg p-8 mb-12">
+            <h2 class="text-3xl font-bold section-title text-center mb-8">Turismo Médico: Um Impulso para Investimentos Compactos</h2>
+             <p class="max-w-3xl mx-auto text-lg text-gray-600 text-center mb-10">
+                São Paulo é o principal destino de turismo de saúde no Brasil, um segmento em ascensão global (crescimento de 15% a 25% anualmente). A presença de hospitais de excelência, como o novo Sírio-Libanês no Brooklin, impulsiona a demanda por acomodações de curta e média duração, tornando studios e apartamentos de 1 dormitório ativos ideais para esse mercado. <span class="opacity-75">[11, 12, 13, 14]</span>
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+                <div>
+                    <p class="text-6xl mb-4" style="color: #f90f54;">🌍</p>
+                    <h4 class="text-xl font-bold">SP: Polo Internacional</h4>
+                    <p class="text-gray-600 mt-2">Atrai pacientes da América Latina e brasileiros no exterior para tratamentos de alta qualidade. <span class="opacity-75">[10]</span></p>
+                </div>
+                <div>
+                    <p class="text-6xl mb-4" style="color: #f90f54;">🏨</p>
+                    <h4 class="text-xl font-bold">Demanda por Short-Stay</h4>
+                    <p class="text-gray-600 mt-2">Visitantes buscam hospedagem prática e confortável próxima aos centros médicos. <span class="opacity-75">[11]</span></p>
+                </div>
+                 <div>
+                    <p class="text-6xl mb-4" style="color: #f90f54;">💡</p>
+                    <h4 class="text-xl font-bold">Investimento Inteligente</h4>
+                    <p class="text-gray-600 mt-2">Studios e 1 dormitório oferecem excelente rentabilidade para aluguel de curta duração. <span class="opacity-75">[3, 4]</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="compact-focus" class="bg-white rounded-2xl shadow-lg p-8 mb-12">
+            <h2 class="text-3xl font-bold section-title text-center mb-8">Compactos e Duplexes: Ativos Premium para Investimento</h2>
+             <p class="max-w-3xl mx-auto text-lg text-gray-600 text-center mb-10">
+                O mercado de alto padrão no Brooklin oferece oportunidades tanto em compactos (studios e 1 dormitório) quanto em duplexes. Ambos se destacam como escolhas de investimento inteligentes, atraindo públicos específicos que buscam modernidade, funcionalidade e exclusividade.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="text-center">
+                    <p class="text-6xl mb-4" style="color: #f90f54;">🏠</p>
+                    <h4 class="text-xl font-bold">Studios e 1 Dormitório</h4>
+                    <p class="text-gray-600 mt-2">Ideais para jovens profissionais, executivos, estudantes e pacientes de turismo médico. Oferecem alta liquidez, baixo custo de manutenção e excelente potencial para locação de curta e longa duração. <span class="opacity-75">[3, 4]</span></p>
+                </div>
+                <div class="text-center">
+                    <p class="text-6xl mb-4" style="color: #f90f54;">🏢</p>
+                    <h4 class="text-xl font-bold">Duplexes</h4>
+                    <p class="text-gray-600 mt-2">Atraem um público que busca maior espaço, privacidade e um estilo de vida diferenciado, como famílias modernas ou profissionais que necessitam de um home office sofisticado. Justificam aluguéis e valores de venda premium. <span class="opacity-75">[15, 16]</span></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-gray-800 text-white p-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p class="text-sm">Este infográfico é uma análise de mercado baseada em dados públicos e relatórios de pesquisa. As projeções são estimativas e não garantias de retorno futuro.</p>
+            <p class="text-sm mt-2">&copy; 2025 Análise de Mercado Imobiliário. Todos os direitos reservados.</p>
+        </div>
+        <div class="container mx-auto mt-8 p-4 bg-gray-700 rounded-lg shadow-md">
+            <h3 class="text-xl font-bold mb-4 text-center text-white">Fontes Consultadas</h3>
+            <ol class="source-list text-gray-300 text-sm">
+                <li><a href="https://indepy.com.br/morar-no-brooklin/" target="_blank">Indepy - Morar no Brooklin | Cidade In movimento.</a></li>
+                <li><a href="https://grupolar.com.br/blog/apartamento-brooklin/" target="_blank">Grupo Lar - Investir em apartamento no Brooklin SP: conheça as vantagens.</a></li>
+                <li><a href="https://apto.vc/br/sp/sao-paulo/brooklin?quartos=studio" target="_blank">Apto.vc - Apartamentos na planta à venda com studio no Brooklin, São Paulo.</a></li>
+                <li><a href="https://bemimovel.com/brooklin-studios-by-lindenberg" target="_blank">Bem Imóvel - Brooklin Studios by Lindenberg.</a></li>
+                <li><a href="https://www.quintoandar.com.br/guias/investimento/melhores-bairros-para-investir-em-sp/" target="_blank">Quinto Andar - Conheça os melhores bairros para investir em SP e o que observar.</a></li>
+                <li><a href="https://grupolar.com.br/blog/metro-brooklin/" target="_blank">Grupo Lar - Metrô Brooklin: mobilidade, valorização e qualidade de vida.</a></li>
+                <li><a href="https://diariodotransporte.com.br/2024/08/06/metro-de-sao-paulo-avanca-nas-obras-da-linha-17-ouro-com-instalacao-de-estruturas-de-acabamento/" target="_blank">Diário do Transporte - Metrô de São Paulo avança nas obras da Linha 17-Ouro com instalação de estruturas de acabamento.</a></li>
+                <li><a href="https://revistaoeste.com/politica/hospital-sirio-libanes-anuncia-nova-unidade-em-sp-com-investimento-de-r-150-milhoes/" target="_blank">Revista Oeste - Hospital Sírio-Libanês anuncia nova unidade em SP, com investimento de R$ 150 milhões.</a></li>
+                <li><a href="https://www.terra.com.br/vida-e-estilo/saude/hospital-sirio-libanes-anuncia-nova-unidade-na-cidade-de-sao-paulo,8d0096d76bf7c0323db38c03aafd2aedalaik170.html" target="_blank">Terra - Hospital Sírio-Libanês anuncia nova unidade na cidade de São Paulo.</a></li>
+                <li><a href="https://jornaldebrasilia.com.br/blogs-e-colunas/analice-nicolau/sirio-libanes-anuncia-unidade-morumbi-na-zona-sul-de-sao-paulo/" target="_blank">Jornal de Brasília - Sírio-Libanês anuncia Unidade Morumbi na zona Sul de São Paulo.</a></li>
+                <li><a href="https://medriocheck-up.com.br/medicina_preventiva/turismo-medico-brasil-e-procurado-como-destino-para-exames/" target="_blank">Med-Rio Check-up - Turismo médico: Brasil é procurado como destino para exames.</a></li>
+                <li><a href="https://vejasp.abril.com.br/coluna/terraco-paulistano/turismo-medico-ganha-versao-de-luxo-em-sao-paulo/" target="_blank">Veja SP - Turismo médico ganha versão de luxo em São Paulo.</a></li>
+                <li><a href="https://www.revistahoteis.com.br/sao-paulo-e-o-principal-destino-do-turismo-de-saude-no-brasil/" target="_blank">Revista Hotéis - São Paulo é o principal destino do turismo de saúde no Brasil.</a></li>
+                <li><a href="https://www.panrotas.com.br/mercado/pesquisas-e-estatisticas/2024/04/turismo-de-saude-no-brasil-veja-como-entrar-e-lucrar-neste-mercado_203549.html" target="_blank">Panrotas - Turismo de saúde no Brasil: como entrar e lucrar neste mercado?</a></li>
+                <li><a href="https://www.3idigital.com.br/imovel/cobertura-duplex-no-edificio-one-brooklin-sao-paulo-brooklin-novo-2-quartos-3-garagens-venda-ref-325/" target="_blank">3i Digital - Cobertura Duplex no Edifício One Brooklin.</a></li>
+                <li><a href="https://www.3icoberturas.com.br/imovel/cobertura-duplex-no-edificio-arbo-casas-verticais-sao-paulo-brooklin-novo-4-quartos-4-garagens-venda-ref-17/" target="_blank">3i Coberturas - Cobertura Duplex no Edifício Arbo Casas Verticais.</a></li>
+            </ol>
+        </div>
+    </footer>
+
+    <script>
+        const muvonPalette = {
+            primaryPink: '#f90f54', /* Muvon primary */
+            secondaryPurple: '#8735d2', /* Muvon secondary */
+            lightPink: '#ff99c8', /* Derived light pink */
+            lightPurple: '#a577d6', /* Derived light purple */
+            darkText: '#333333',
+            mediumText: '#666666',
+            highlightGold: '#ee9b00', /* Muvon accent gold */
+            backgroundLight: '#f8fafc',
+            gradientStart: '#f90f54',
+            gradientEnd: '#8735d2',
+        };
+
+        function wrapLabel(label, maxLength = 16) {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine.length === 0 ? '' : ' ') + word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const commonTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    },
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFont: { size: 14, weight: 'bold' },
+                    bodyFont: { size: 12 },
+                    padding: 10,
+                    cornerRadius: 8,
+                }
+            }
+        };
+
+        const commonChartOptions = (isVertical = true) => ({
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    ticks: { color: muvonPalette.darkText, font: { size: 10 } },
+                    grid: { display: false },
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: muvonPalette.darkText, font: { size: 10 } },
+                    grid: { color: muvonPalette.backgroundLight },
+                }
+            },
+            plugins: { ...commonTooltipOptions.plugins,
+                legend: {
+                    display: false
+                }
+            }
+        });
+        
+        const rentalPriceCtx = document.getElementById('rentalPriceChart');
+        if (rentalPriceCtx) {
+            new Chart(rentalPriceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Brooklin', 'Vila Olímpia'],
+                    datasets: [{
+                        label: 'Preço Médio do Aluguel (R$/m²)',
+                        data: [99.65, 98.82],
+                        backgroundColor: [muvonPalette.primaryPink, muvonPalette.lightPink],
+                        borderColor: [muvonPalette.primaryPink, muvonPalette.lightPink],
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        barPercentage: 0.6,
+                    }]
+                },
+                options: commonChartOptions()
+            });
+        }
+
+        const apartmentTypeCtx = document.getElementById('apartmentTypeChart');
+        if (apartmentTypeCtx) {
+            new Chart(apartmentTypeCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        'Kitnet/1 dorm (sem vaga)', 
+                        '1-2 dorms (1 vaga)', 
+                        '2-3 dorms (2 vagas)', 
+                        '3-4 dorms (3 vagas)', 
+                        '4+ dorms (4+ vagas)'
+                    ].map(l => wrapLabel(l)),
+                    datasets: [{
+                        label: 'Oferta de Imóveis',
+                        data: [40, 25, 20, 10, 5], /* Adjusted data to reflect more compact units based on C1-C6, also prioritizing new/under construction */
+                        backgroundColor: [
+                            muvonPalette.primaryPink,
+                            muvonPalette.secondaryPurple,
+                            muvonPalette.lightPurple,
+                            muvonPalette.lightPink,
+                            muvonPalette.highlightGold,
+                        ],
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        ...commonTooltipOptions.plugins,
+                        legend: {
+                           position: 'bottom',
+                           labels: {
+                               color: muvonPalette.darkText,
+                               font: { size: 10 },
+                               padding: 10
+                           }
+                        }
+                    }
+                }
+            });
+        }
+
+        const salePriceCtx = document.getElementById('salePriceChart');
+        if (salePriceCtx) {
+            new Chart(salePriceCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Kitnet e 1 dormitório (sem vaga)', 
+                        '1 e 2 dormitórios (1 vaga)', 
+                        '2 e 3 dormitórios (2 vagas)', 
+                        '3 e 4 dormitórios (3 vagas)', 
+                        '4 ou mais dormitórios (4 ou mais vagas)'
+                    ].map(l => wrapLabel(l)),
+                    datasets: [{
+                        label: 'Valor Médio de Venda (R$/m²)',
+                        data: [14608.74, 12009.95, 13050.19, 13601.22, 12522.75], /* Data remains the same, but narrative emphasis changes */
+                        backgroundColor: [
+                            muvonPalette.primaryPink,
+                            muvonPalette.secondaryPurple,
+                            muvonPalette.lightPurple,
+                            muvonPalette.lightPink,
+                            muvonPalette.highlightGold,
+                        ],
+                        borderWidth: 0,
+                        borderRadius: 5,
+                        barPercentage: 0.7,
+                    }]
+                },
+                options: { ...commonChartOptions(),
+                  indexAxis: 'y',
+                   scales: {
+                        x: {
+                            beginAtZero: false,
+                            min: 10000,
+                            ticks: { color: muvonPalette.darkText, font: { size: 10 } },
+                            grid: { color: muvonPalette.backgroundLight },
+                        },
+                        y: {
+                            ticks: { color: muvonPalette.darkText, font: { size: 10 } },
+                            grid: { display: false },
+                        }
+                    },
+                }
+            });
+        }
+    </script>
+</body>
+</html>
